@@ -1,0 +1,35 @@
+---
+import { experience } from '../data/experience';
+---
+<section class="section" id="experience">
+  <div class="container" data-reveal>
+    <h2>Experience and education</h2>
+    <ol>
+      {experience.map((item) => (
+        <li>
+          <p class="dates">{item.dates}</p>
+          <div class="detail">
+            <h3>{item.role}</h3>
+            <p class="place">{item.place}</p>
+            {item.points.map((point) => <p class="point">{point}</p>)}
+          </div>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  ol { margin: var(--s-32) 0 0; padding: 0; list-style: none; border-bottom: 1px solid var(--rule); }
+  li { display: grid; gap: var(--s-4); padding-block: var(--s-16); border-top: 1px solid var(--rule); }
+  .detail { min-width: 0; }
+  .dates, .place { color: var(--muted); font-size: var(--text-small); }
+  h3 { font-size: var(--text-h3); }
+  .place { margin-top: var(--s-4); }
+  .point { margin-top: var(--s-8); }
+
+  @media (min-width: 640px) {
+    li { grid-template-columns: 12rem minmax(0, 1fr); gap: var(--s-32); }
+    .dates { padding-top: var(--s-4); }
+  }
+</style>

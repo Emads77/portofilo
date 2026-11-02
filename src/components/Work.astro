@@ -1,0 +1,28 @@
+---
+import { projects } from '../data/projects';
+import ProjectCard from './ProjectCard.astro';
+
+const [featured, ...rest] = projects;
+---
+<section class="section tinted" id="work">
+  <div class="container">
+    <h2 data-reveal>Selected work</h2>
+    <div class="list">
+      <div data-reveal><ProjectCard project={featured} featured /></div>
+      <div class="pair">
+        {rest.map((project) => <div class="cell" data-reveal><ProjectCard project={project} /></div>)}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .tinted { background: var(--surface); }
+  .list { display: grid; gap: var(--s-24); margin-top: var(--s-32); }
+  .pair { display: grid; gap: var(--s-24); }
+  .cell { display: grid; min-width: 0; }
+
+  @media (min-width: 1024px) {
+    .pair { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+</style>

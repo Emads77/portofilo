@@ -1,0 +1,31 @@
+---
+import { profile } from '../data/profile';
+---
+<section class="section" id="about">
+  <div class="container grid" data-reveal>
+    <div class="story">
+      <h2>About me</h2>
+      {profile.story.map((paragraph) => <p>{paragraph}</p>)}
+    </div>
+    <div class="cares">
+      <h3>What I care about</h3>
+      <ul>
+        {profile.cares.map((item) => <li>{item}</li>)}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid { display: grid; gap: var(--s-48); }
+  .story, .cares { min-width: 0; }
+  .story p { margin-top: var(--s-16); }
+  .story h2 + p { margin-top: var(--s-24); }
+  li { padding-block: var(--s-12); border-top: 1px solid var(--rule); }
+  ul { margin-top: var(--s-16); border-bottom: 1px solid var(--rule); }
+
+  @media (min-width: 1024px) {
+    .grid { grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: var(--s-96); align-items: start; }
+    .cares { padding-top: var(--s-12); }
+  }
+</style>

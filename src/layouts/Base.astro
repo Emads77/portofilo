@@ -1,0 +1,35 @@
+---
+import '@fontsource-variable/geist';
+import '../styles/global.css';
+import { profile } from '../data/profile';
+
+const description = `${profile.name}: ${profile.sub}`;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{profile.name}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={profile.name} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <script is:inline>document.documentElement.classList.add('js');</script>
+  </head>
+  <body>
+    <slot />
+    <script>
+      const items = document.querySelectorAll('[data-reveal]');
+      const observer = new IntersectionObserver((entries) => {
+        for (const entry of entries) {
+          if (!entry.isIntersecting) continue;
+          entry.target.classList.add('is-in');
+          observer.unobserve(entry.target);
+        }
+      });
+      items.forEach((item) => observer.observe(item));
+    </script>
+  </body>
+</html>

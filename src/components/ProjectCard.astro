@@ -1,0 +1,78 @@
+---
+import type { Project } from '../data/projects';
+
+interface Props {
+  project: Project;
+  featured?: boolean;
+}
+
+const { project, featured = false } = Astro.props;
+---
+<article class:list={['card', { featured }]}>
+  <div class="content">
+    <p class="context"><span class="status">{project.status}</span> {project.context}</p>
+    <h3>{project.title}</h3>
+    <p class="summary">{project.summary}</p>
+    <h4>What I built</h4>
+    <ul class="built">
+      {project.built.map((item) => <li>{item}</li>)}
+    </ul>
+    <h4>My role</h4>
+    <p class="role">{project.role}</p>
+    <h4>Built with</h4>
+    <p class="stack">{project.stack.join(', ')}</p>
+    {project.links && (
+      <p class="links">
+        {project.links.map((link) => (
+          <a href={link.href} target="_blank" rel="noopener">{link.label}</a>
+        ))}
+      </p>
+    )}
+  </div>
+  {project.image && project.links?.[0] && (
+    <a class="shot" href={project.links[0].href} target="_blank" rel="noopener" aria-label={project.links[0].label}>
+      <img src={project.image.src} alt={project.image.alt} width={project.image.width} height={project.image.height} loading="lazy" />
+    </a>
+  )}
+</article>
+
+<style>
+  .card {
+    display: grid;
+    gap: var(--s-32);
+    min-width: 0;
+    padding: var(--s-24);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    background: var(--paper);
+    transition: transform 160ms ease-out, box-shadow 160ms ease-out;
+  }
+  .card:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgb(22 25 29 / 8%); }
+  .content { min-width: 0; }
+  .context { color: var(--muted); font-size: var(--text-small); }
+  .status { display: inline-block; margin-right: var(--s-8); padding: 0 var(--s-8); border: 1px solid var(--accent); border-radius: var(--radius); color: var(--accent); font-weight: 500; }
+  h3 { margin-top: var(--s-12); font-size: clamp(1.375rem, 2vw, 1.625rem); }
+  .summary { margin-top: var(--s-12); }
+  h4 { margin: var(--s-24) 0 0; font-size: var(--text-small); font-weight: 600; }
+  .built { margin-top: var(--s-4); padding-left: var(--s-16); list-style: disc; font-size: var(--text-small); }
+  .built li + li { margin-top: var(--s-4); }
+  .built li::marker { color: var(--accent); }
+  .role, .stack { margin-top: var(--s-4); font-size: var(--text-small); }
+  .stack { color: var(--muted); }
+  .links { display: flex; flex-wrap: wrap; gap: var(--s-16); margin-top: var(--s-24); }
+  .links a { color: var(--accent); font-weight: 500; }
+  .links a:hover { color: var(--accent-dark); }
+  .shot { display: block; min-width: 0; overflow: hidden; border: 1px solid var(--rule); border-radius: var(--radius); }
+  /* The source screenshot has a browser scrollbar on its right edge: this crops it off. */
+  .shot img { display: block; width: 101.1%; max-width: none; height: auto; }
+
+  @media (min-width: 1024px) {
+    .card { padding: var(--s-32); }
+    .featured { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: var(--s-48); align-items: center; }
+    .featured h3 { font-size: 1.875rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card:hover { transform: none; }
+  }
+</style>

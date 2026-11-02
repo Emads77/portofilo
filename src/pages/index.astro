@@ -1,0 +1,35 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Work from '../components/Work.astro';
+import Security from '../components/Security.astro';
+import Experience from '../components/Experience.astro';
+import Skills from '../components/Skills.astro';
+import Contact from '../components/Contact.astro';
+import { profile } from '../data/profile';
+---
+<Base>
+  <Nav />
+  <main>
+    <Hero />
+    <About />
+    <Work />
+    <Security />
+    <Experience />
+    <Skills />
+    <Contact />
+  </main>
+  <footer class="footer">
+    <div class="container row">
+      <span>&copy; 2026 {profile.name}</span>
+      <span>{profile.location}</span>
+    </div>
+  </footer>
+</Base>
+
+<style>
+  .footer { padding-block: var(--s-24); border-top: 1px solid var(--rule); color: var(--muted); font-size: var(--text-small); }
+  .row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--s-8) var(--s-24); }
+</style>

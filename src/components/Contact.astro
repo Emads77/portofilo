@@ -1,0 +1,23 @@
+---
+import { profile } from '../data/profile';
+---
+<section class="section" id="contact">
+  <div class="container" data-reveal>
+    <h2>Contact</h2>
+    <p class="line">{profile.contactLine}</p>
+    <a class="mail" href={`mailto:${profile.email}`}>{profile.email}</a>
+    <ul>
+      <li><a href={profile.linkedin} target="_blank" rel="noopener">LinkedIn</a></li>
+      <li><a href={profile.github} target="_blank" rel="noopener">GitHub</a></li>
+    </ul>
+  </div>
+</section>
+
+<style>
+  .line { margin-top: var(--s-16); }
+  .mail { display: inline-block; margin-top: var(--s-16); color: var(--accent); font-size: clamp(1.375rem, 3.4vw, 2.25rem); font-weight: 600; letter-spacing: -0.02em; line-height: 1.25; }
+  .mail:hover { color: var(--accent-dark); }
+  ul { display: flex; flex-wrap: wrap; gap: var(--s-24); margin-top: var(--s-24); }
+  li a { font-weight: 500; }
+  li a:hover { color: var(--accent); }
+</style>

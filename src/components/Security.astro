@@ -1,0 +1,38 @@
+---
+import { security } from '../data/security';
+---
+<section class="band" id="security">
+  <div class="container" data-reveal>
+    <h2>Cybersecurity</h2>
+    <p class="intro">{security.intro}</p>
+    <div class="grid">
+      {security.groups.map((group) => (
+        <div class="group">
+          <h3>{group.title}</h3>
+          <ul>
+            {group.items.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .band { padding-block: var(--s-72); background: var(--accent-dark); color: var(--on-accent); }
+  h2 { font-size: var(--text-h2); }
+  .intro { margin-top: var(--s-16); }
+  .grid { display: grid; gap: var(--s-32); margin-top: var(--s-48); }
+  .group { min-width: 0; padding-top: var(--s-16); border-top: 1px solid rgb(255 255 255 / 40%); }
+  h3 { font-size: var(--text-body); letter-spacing: 0; }
+  ul { margin-top: var(--s-8); font-size: var(--text-small); }
+  li + li { margin-top: var(--s-4); }
+
+  @media (min-width: 640px) {
+    .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+
+  @media (min-width: 1024px) {
+    .band { padding-block: var(--s-96); }
+  }
+</style>

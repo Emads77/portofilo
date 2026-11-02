@@ -1,0 +1,39 @@
+:root {
+  /* Colors: white page, near-black text, one green accent */
+  --paper: #ffffff;
+  --surface: #f5f7f6;
+  --ink: #16191d;
+  --muted: #59616b;
+  --rule: #e3e6e8;
+  --accent: #146c4b;
+  --accent-dark: #0e5339;
+  --on-accent: #ffffff;
+
+  --font: 'Geist Variable', 'Segoe UI', system-ui, sans-serif;
+
+  /* Type scale */
+  --text-display: clamp(2.25rem, 4.2vw, 3.5rem);
+  --text-lead: clamp(1.25rem, 1.9vw, 1.5rem);
+  --text-h2: clamp(1.75rem, 3vw, 2.25rem);
+  --text-h3: 1.25rem;
+  --text-body: 1.0625rem;
+  --text-small: 0.9375rem;
+
+  /* Spacing scale */
+  --s-4: 4px;
+  --s-8: 8px;
+  --s-12: 12px;
+  --s-16: 16px;
+  --s-24: 24px;
+  --s-32: 32px;
+  --s-48: 48px;
+  --s-64: 64px;
+  --s-72: 72px;
+  --s-96: 96px;
+  --s-128: 128px;
+
+  --radius: 4px;
+  --container: 1120px;
+  --gutter: clamp(20px, 5vw, 48px);
+  --nav-height: 64px;
+}

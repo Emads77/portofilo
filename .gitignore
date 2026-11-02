@@ -1,1 +1,7 @@
 .idea
+node_modules
+dist
+.astro
+screenshots
+chrome-err.log
+chrome-out.log

@@ -1,0 +1,44 @@
+---
+import { profile, navLinks } from '../data/profile';
+---
+<header class="nav">
+  <div class="container bar">
+    <a class="name" href="#top">{profile.name}</a>
+    <button class="toggle" type="button" aria-expanded="false" aria-controls="nav-links">Menu</button>
+    <nav aria-label="Main">
+      <ul id="nav-links">
+        {navLinks.map((link) => <li><a href={link.href}>{link.label}</a></li>)}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .nav { position: sticky; top: 0; z-index: 10; background: var(--paper); border-bottom: 1px solid var(--rule); }
+  .bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0 var(--s-16); min-height: var(--nav-height); }
+  .name { font-weight: 600; text-decoration: none; }
+  nav { display: none; flex-basis: 100%; padding-bottom: var(--s-12); }
+  nav.open { display: block; }
+  li a { display: block; padding: var(--s-8) 0; color: var(--muted); font-size: var(--text-small); text-decoration: none; }
+  li a:hover { color: var(--accent); }
+  .toggle { padding: var(--s-8) var(--s-12); border: 1px solid var(--rule); border-radius: var(--radius); background: none; color: var(--ink); font: inherit; font-size: var(--text-small); cursor: pointer; }
+
+  @media (min-width: 640px) {
+    .toggle { display: none; }
+    nav { display: block; flex-basis: auto; padding-bottom: 0; }
+    ul { display: flex; gap: var(--s-32); }
+    li a { padding: var(--s-4) 0; }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector('.toggle');
+  const nav = document.querySelector('.nav nav');
+  const setOpen = (open: boolean) => {
+    nav?.classList.toggle('open', open);
+    toggle?.setAttribute('aria-expanded', String(open));
+    if (toggle) toggle.textContent = open ? 'Close' : 'Menu';
+  };
+  toggle?.addEventListener('click', () => setOpen(!nav?.classList.contains('open')));
+  nav?.addEventListener('click', () => setOpen(false));
+</script>
